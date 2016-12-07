@@ -1,0 +1,18 @@
+[v-cloak]{display:none}
+html{font-family:PingFang SC,Microsoft YaHei;}
+#guide{margin:auto;width:100%;max-width:1200px;box-sizing:border-box;padding:20px 350px 50px 50px;}
+#nav{width:300px;padding:10px;box-sizing:border-box;border-left:1px solid #ccc;height:100%;font-size:16px;position: fixed;top:0;right:0;overflow-y:scroll;scrollbar-face-color:#fff;scrollbar-arrow-color:#fff;scrollbar-3dlight-color:#fff;scrollbar-highlight-color:#fff;scrollbar-shadow-color:#fff;scrollbar-darkshadow-color:#fff;scrollbar-track-color:#fff}
+#nav::-webkit-scrollbar{width:0px;}
+#nav > ul{padding:0}
+#nav input{outline:none;width:100%;text-indent:10px}
+#nav .active{color:red}
+#nav li{list-style: none}
+#nav a{display:block;height:20px;line-height:20px;width:100%;overflow:hidden;text-overflow:ellipsis;word-break:keep-all;white-space:nowrap; }
+#nav a:hover{overflow:visible}
+@media (max-width:1023px){
+	#guide{padding-right:50px;}
+	#nav{display:none}
+}
+@media(max-width:768px){
+	#guide{padding:20px;}
+}
