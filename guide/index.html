@@ -7,20 +7,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=no">
 	<meta name="keywords" content="java,beetl,beetlsql,模板,orm" />
 	<meta name="description" content="Beetl是一款6倍于Freemarker的超高性能的java模板引擎，来自于中国！！BeetlSQL是一款功能强大，以SQL为中心，使用简单的全功能的ORMapping工具，支持自动生成代码，内置大量SQL语句，支持市面上绝大多数主流数据库。Beetl和BeetlSQL均能与目前市面上的大多数流行框架无缝整合。" />
-    <!--[if lt IE 9]>
-    <script>(!+[1,])&&alert('本站不支持IE8及以下，我们不想为落后买单！'),location.href='http://browsehappy.com/'</script>
-    <![endif]-->
-	<link href="static/beetldoc.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script>(!+[1,])&&alert('本站不支持IE8及以下，我们不想为落后买单！'),location.href='http://browsehappy.com/'</script>
+	<![endif]-->
+	<link href="static/beetldoc.css?_=1" rel="stylesheet">
 </head>
 <body>
 	<div id="guide" v-cloak>
 		<article id="doc" class="markdown-body" v-html="doc"></article>
 		<aside id="nav" class="markdown-body">
-			<h3>手册目录</h3>
+			<h3 v-if="type">{{type}}手册目录</h3>
 			<ul>
-				<li v-if="type == 'beetlsql'"><a href="#beetl">切换到Beetl文档</a></li>
-				<li v-if="type == 'beetl'"><a href="#beetlsql">切换到BeetlSQL文档</a></li>
-				<li><input type="text" placeholder="输入关键词快速检索，支持正则" v-model="search" maxlength="15"/></li>
+				<li v-if="type == 'beetlsql'"><a href="/">主页</a> | <a href="#beetl">查看Beetl手册</a></li>
+				<li v-if="type == 'beetl'"><a href="/">主页</a> | <a href="#beetlsql">查看BeetlSQL手册</a></li>
+				<li v-if="nav.length"><input type="text" placeholder="输入关键词快速检索，支持正则" v-model="search" maxlength="15"/></li>
 			</ul>
 			<navmenu v-if="!search" :list="nav"></navmenu>
 			<ul v-if="search">

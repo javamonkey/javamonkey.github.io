@@ -43,6 +43,7 @@ render.heading = function(text,level){
 function loadDoc(){
 	var docs = ['beetl','beetlsql'],doc = location.hash.substr(1)
 	if(docs.indexOf(doc)<0) doc = 'beetl';//所有非法的参数都归为beetl
+	document.title = doc+'中文手册';
 	toc=[];
 	$(window).scrollTop(0)
 	NProgress.start();
@@ -60,17 +61,21 @@ function loadDoc(){
 	})
 }
 $(window).on('scroll',_.throttle(function(){
-	var bdScrollTop = $(window).scrollTop();
+	var _win =$(window),_winST =  _win.scrollTop(),_winH = _win.height(),prev;
 	$('#nav .active').removeClass('active')
 	$('._anchor').each(function(i,n){
-		if(bdScrollTop<=this.offsetTop){
-			var current = $('#nav a[href="#'+this.id+'"]').addClass('active');
+		if(_winST<=this.offsetTop){
+			var _id = prev&&_winST+_winH*2/3<this.offsetTop?prev.id:this.id;
+			var current = $('#nav a[href="#'+_id+'"]').addClass('active');
 			var container = $('#nav');
 			container.stop().animate({scrollTop:current.offset().top - container.offset().top + container.scrollTop() - (container.height()-current.height())/2},'fast');
 			return false;
 		}
+		prev = this;
 	})
-},300)).on('hashchange',loadDoc)
+},300)).on('resize',function(){
+	$(this).trigger('scroll');
+}).on('hashchange',loadDoc)
 function localSearch(search,nav,arr){
 	try{
 		var reg = new RegExp(search,'i')
