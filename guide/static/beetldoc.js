@@ -17,7 +17,7 @@ var guide = new Vue({
 		jump:function(e){
 			this.search = '';
 			e.preventDefault();
-			document.body.scrollTop = document.querySelector(e.target.getAttribute('href')).offsetTop;
+			$(window).scrollTop($($(e.target).attr('href')).offset().top);
 		}
 	}
 })
@@ -44,7 +44,7 @@ function loadDoc(){
 	var docs = ['beetl','beetlsql'],doc = location.hash.substr(1)
 	if(docs.indexOf(doc)<0) doc = 'beetl';//所有非法的参数都归为beetl
 	toc=[];
-	document.body.scrollTop = 0
+	$(window).scrollTop(0)
 	NProgress.start();
 	$.get(doc+'.md?_='+new Date().getDay(),function(md){
 		marked(md,
@@ -60,11 +60,13 @@ function loadDoc(){
 	})
 }
 $(window).on('scroll',_.throttle(function(){
-	var bdScrollTop = document.body.scrollTop;
+	var bdScrollTop = $(window).scrollTop();
 	$('#nav .active').removeClass('active')
 	$('._anchor').each(function(i,n){
 		if(bdScrollTop<=this.offsetTop){
-			var current = $('#nav a[href="#'+this.id+'"]').addClass('active')
+			var current = $('#nav a[href="#'+this.id+'"]').addClass('active');
+			var container = $('#nav');
+			container.stop().animate({scrollTop:current.offset().top - container.offset().top + container.scrollTop() - (container.height()-current.height())/2},'fast');
 			return false;
 		}
 	})
