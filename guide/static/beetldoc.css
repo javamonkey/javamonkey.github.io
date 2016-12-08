@@ -1,5 +1,6 @@
 [v-cloak]{display:none}
-html{font-family:PingFang SC,Microsoft YaHei;}
+html,.markdown-body{font-family:PingFang SC,Microsoft YaHei;}
+body{overflow-y:scroll}
 #guide{margin:auto;width:100%;max-width:1600px;box-sizing:border-box;padding:20px 350px 50px 50px;}
 #nav{width:300px;padding:10px;box-sizing:border-box;border-left:1px solid #ccc;height:100%;font-size:16px;position: fixed;top:0;right:0;overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;scrollbar-face-color:#fff;scrollbar-arrow-color:#fff;scrollbar-3dlight-color:#fff;scrollbar-highlight-color:#fff;scrollbar-shadow-color:#fff;scrollbar-darkshadow-color:#fff;scrollbar-track-color:#fff}
 #nav::-webkit-scrollbar{width:0;height:0}
