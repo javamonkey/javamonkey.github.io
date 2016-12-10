@@ -2722,7 +2722,7 @@ ${obj.user.name}
 
 比如模板index.html有很多动态内容，有动态生成的菜单，有右侧的top10，也有核心区域的表格，大概内容如下
 
-```javascript
+```
 <#menu/>
 <#top10> ....</#top10>
 <div id="table-container" >
