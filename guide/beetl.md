@@ -989,11 +989,11 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 
 ```html
 
-<%if(style==’simple’){%>
+@if(style==’simple’){
  请联系我 ${session.user.name}
-<%}else{%>
+@}else{
 请联系我 ${session.user.name},phone:${session.user.phone}
-<%}%>
+@}
 
 ```
 
