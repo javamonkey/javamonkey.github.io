@@ -986,6 +986,7 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 
 如对于标签footer,Beetl默认会寻找WebRoot/htmltag/footer.tag(可以通过配置文件修改路径和后缀) ,内容如下:
 
+
 ```javascript
 <%if(style==’simple’){%>
  请联系我 ${session.user.name}
