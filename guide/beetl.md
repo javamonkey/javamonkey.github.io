@@ -1823,22 +1823,22 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
 
 -   采用layout include
 
-    ```javascript
-    <%
-     //content.html内容如下：
-     layout("/inc/layout.html"){%>
-     this is 正文
-     ..........
-     <%}%>
-    ```
+```javascript
+<%
+ //content.html内容如下：
+ layout("/inc/layout.html"){%>
+ this is 正文
+ ..........
+ <%}%>
+```
 
-    如上一个子页面将使用layout布局页面，layout 页面内容如下
+如上一个子页面将使用layout布局页面，layout 页面内容如下
 
-    ```javascript
-    <%include("/inc/header.html"){} %>
-    this is content:${layoutContent}
-    this is footer:
-    ```
+```javascript
+<%include("/inc/header.html"){} %>
+this is content:${layoutContent}
+this is footer:
+```
 
     layoutContent 是默认变量，也可以改成其他名字，具体请参考layout标签函数
 
