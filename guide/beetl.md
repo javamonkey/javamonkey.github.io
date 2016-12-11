@@ -108,7 +108,7 @@ ENGINE=org.beetl.core.engine.FastRuntimeEngine
 DELIMITER_PLACEHOLDER_START=${
 DELIMITER_PLACEHOLDER_END=}
 DELIMITER_STATEMENT_START=<%
-DELIMITER_STATEMENT_END=%>
+DELIMITER_STATEMENT_END= %>
 DIRECT_BYTE_OUTPUT = FALSE
 HTML_TAG_SUPPORT = true
 HTML_TAG_FLAG = #
@@ -149,7 +149,7 @@ TAG.include= org.beetl.ext.tag.IncludeTag
 
 第3,4行指定了占位符号，默认是`${` `}`，也可以指定为其他占位符。
 
-第5,6行指定了语句的定界符号，默认是`<%` `%>`，也可以指定为其他定界符号
+第5,6行指定了语句的定界符号，默认是`<% ` ` %>`，也可以指定为其他定界符号
 
 第7行指定IO输出模式，默认是FALSE,即通常的字符输出，在考虑高性能情况下，可以设置成`true`。详细请参考高级用法
 
@@ -194,7 +194,7 @@ TAG.include= org.beetl.ext.tag.IncludeTag
 >   2.4.0 新功能:beetl 支持通过模板本生来完成函数，即模板函数，或者通过模板来实现HTML标签（而不用写java代码），可以beetl.properties为这种应用设置的不同的语句定界符来跟常规模板做区分，如下
 >
 >   ```properties
->   FUNCTION_TAG_LIMITER=<%;%>
+>   FUNCTION_TAG_LIMITER=<% ; %>
 >   ```
 >
 >   分号分割开，如果配置文件没有FUNCTION_TAG_LIMITER=，则模板函数，html标签使用同**DELIMITER_STATEMENT_START**，**DELIMITER_STATEMENT_END**
@@ -363,7 +363,7 @@ template.binding("list",service.getUserList());
 for(user in list){
 %>
 hello,${user.name};
-<%}%>
+<% } %>
 ```
 
 
@@ -407,7 +407,7 @@ var content = {
 %>
 模板其他内容：
 
-<%}; %>
+<% }; %>
 ```
 
 第2行定义了一个模板变量content = { …} ; 此变量跟临时变量一样，可以在其他地方使用，最常见的用户是用于复杂的布局。请参考高级用法布局
@@ -435,7 +435,7 @@ template.binding("pageMap",service.getPage());
 for(user in list){
 %>
 hello,${user.name};
-<%}%>
+<% } %>
 
 当前页${pageMap['page']},总共${pageMap["total"]}
 
@@ -931,7 +931,7 @@ index.html
 layout("/inc/layout.html",{title:'主题'}){
 %>
 Hello,this is main part
-<%} %>
+<% } %>
 ```
 
 layout.html
@@ -986,6 +986,7 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 
 如对于标签footer,Beetl默认会寻找WebRoot/htmltag/footer.tag(可以通过配置文件修改路径和后缀) ,内容如下:
 
+<<<<<<< HEAD
 
 ```html
 
@@ -995,6 +996,14 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 请联系我 ${session.user.name},phone:${session.user.phone}
 @}
 
+=======
+```javascript
+<% if(style==’simple’){ %>
+ 请联系我 ${session.user.name}
+<% }else{ %>
+请联系我 ${session.user.name},phone:${session.user.phone}
+<% } %>
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 ```
 
 如下还包含了自定义html标签一些一些规则
@@ -1179,7 +1188,7 @@ var b = a/0;
 1|<%
 2|var a = 1;
 3|var b = a/0;
-4|%>
+4| %>
 ```
 
 ```javascript
@@ -1198,7 +1207,7 @@ var c = a+2;
 2|var a = 1;
 3|var b = a
 4|var c = a+2;
-5|%>
+5| %>
 ```
 
 >   1.  默认的错误处理器仅仅像后台打印错误，并没有抛出异常，如果需要在render错误时候抛出异常到控制层，则可以使用org.beetl.core.ReThrowConsoleErrorHandler。不仅打印异常，还抛出BeetlException
@@ -1823,6 +1832,7 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
 
 -   采用layout include
 
+<<<<<<< HEAD
 ```javascript
 
 @ //content.html内容如下：
@@ -1831,14 +1841,32 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
  ..........
 @}
 ```
+=======
+    ```javascript
+    <%
+     //content.html内容如下：
+     layout("/inc/layout.html"){ %>
+     this is 正文
+     ..........
+     <% } %>
+    ```
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
 如上一个子页面将使用layout布局页面，layout 页面内容如下
 
+<<<<<<< HEAD
 ```javascript
 @ include("/inc/header.html"){} 
 this is content:${layoutContent}
 this is footer:
 ```
+=======
+    ```javascript
+    <% include("/inc/header.html"){} %>
+    this is content:${layoutContent}
+    this is footer:
+    ```
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
     layoutContent 是默认变量，也可以改成其他名字，具体请参考layout标签函数
 
@@ -1861,14 +1889,14 @@ this is footer:
     %>
     web页面js部分
 
-    <%};%>
+    <% }; %>
 
     <%
             var htmlPart = {
     %>
     web页面html部分
 
-    <%};
+    <% };
     include("/inc/layout.html",{jsSection:jsPart,htmlSection:htmlPart}){}
     %>
     ```
@@ -2632,7 +2660,7 @@ public Context withContext() {
 for(user in list){
 %>
 <p>hello,${user.nickname};<p/>
-<%}%>
+<% } %>
 
 <p>当前页${pager.pageNumber},总共${pager.pageCount}页<p/>
 </body>
@@ -2733,9 +2761,9 @@ ${obj.user.name}
 
 <table>
         <tr><td width=100>id</td><td width=100>姓名</td></tr>
-        <%for(user in users){%>
+        <% for(user in users){ %>
         <tr><td>${user.id}</td><td>${user.name}</td></tr>
-        <%}%>
+        <% } %>
 </table>
 
 当前页面<span id="current">${page!1}</span><span style="width:20px"></span>
@@ -2789,12 +2817,12 @@ ajax 片段渲染也支持默认情况下不渲染，仅仅做为一个片段使
 >var tableData = paras.table;
 >#ajax userTable: {
 >for(user in tableData);
->%>
+> %>
 >
 ><%
 >//ajax片段结尾
 >}
->%>
+> %>
 >```
 >
 >变量tableData是从paras里获取的，是个临时变量，因此就算你在后台binding了一个tableData，beetl 也不能识别。在渲染ajax片段的时候会报变量tableData找不到。改正的办法只能是让tableData全局变量。
@@ -3041,13 +3069,13 @@ Spring Security Expression相关语法，请阅读： [http://docs.spring.io/sp
 -   include include一个模板，如 :
 
     ```javascript
-    <%include("/header.html"){}%>
+    <% include("/header.html"){} %>
     ```
 
     如果想往子模板中传入参数，则可以后面跟一个json变量
 
     ```javascript
-    <%include("/header.html",{'user':user,'id',user.id}){}%>
+    <% include("/header.html",{'user':user,'id',user.id}){} %>
     ```
 
     这样user，和id 可以在header.html被引用，并成为header.html的全局变量
@@ -3061,16 +3089,16 @@ Spring Security Expression相关语法，请阅读： [http://docs.spring.io/sp
     ```javascript
     <%
     //content.html内容如下：
-    layout("/inc/layout.html"){%>
+    layout("/inc/layout.html"){ %>
     this is 正文
     ..........
-    <%}%>
+    <% } %>
     ```
 
     layout.html 是布局文件，内容如下
 
     ```javascript
-    <%include("/inc/header.html"){} %>
+    <% include("/inc/header.html"){} %>
     this is content:${layoutContent}
     this is footer:
     ```
@@ -3087,27 +3115,27 @@ Spring Security Expression相关语法，请阅读： [http://docs.spring.io/sp
     如果想往layout页面传入参数，则传入一个json变量，如下往layout.html页面传入一个用户登录时间
 
     ```javascript
-    <%layout("/inc/header.html",{'date':user.loginDate,'title':"内容页面"}){%>
+    <% layout("/inc/header.html",{'date':user.loginDate,'title':"内容页面"}){ %>
     this is 正文
     ..........
-    <%}%>
+    <% } %>
     ```
 
     如果layoutContent 命名有冲突，可以在layout第三个参数指定，如
 
     ```javascript
-    <%layout("/inc/header.html",{'date':user.loginDate,'title':"内容页面"},"myLayoutContent"){%>
+    <% layout("/inc/header.html",{'date':user.loginDate,'title':"内容页面"},"myLayoutContent"){ %>
     this is 正文
     ..........
-    <%}%>
+    <% } %>
     ```
 
 -   cache 能Cache标签的内容，并指定多长时间刷新，如
 
     ```javascript
-    <%:cache('key2',10,false){  %>
+    <% :cache('key2',10,false){  %>
     内容体
-    <%}%>
+    <% } %>
     ```
 
     需要指定三个参数
