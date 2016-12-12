@@ -46,7 +46,7 @@ Beetl目前版本是2.7.3,相对于其他java模板引擎，具有功能齐全�
 >
 >   源码主页：https://github.com/javamonkey/beetl2.0
 >
->   在线体验和代码分享 [http://ibeetl.com:8080/beetlonline/](http://ibeetl.com:8080/beetlonline/)
+>   在线体验和代码分享 [http://ibeetl.com/beetlonline/](http://ibeetl.com:8080/beetlonline/)
 
 
 
@@ -986,12 +986,24 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 
 如对于标签footer,Beetl默认会寻找WebRoot/htmltag/footer.tag(可以通过配置文件修改路径和后缀) ,内容如下:
 
+<<<<<<< HEAD
+
+```html
+
+@if(style==’simple’){
+ 请联系我 ${session.user.name}
+@}else{
+请联系我 ${session.user.name},phone:${session.user.phone}
+@}
+
+=======
 ```javascript
 <% if(style==’simple’){ %>
  请联系我 ${session.user.name}
 <% }else{ %>
 请联系我 ${session.user.name},phone:${session.user.phone}
 <% } %>
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 ```
 
 如下还包含了自定义html标签一些一些规则
@@ -1820,6 +1832,16 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
 
 -   采用layout include
 
+<<<<<<< HEAD
+```javascript
+
+@ //content.html内容如下：
+@ layout("/inc/layout.html"){
+ this is 正文
+ ..........
+@}
+```
+=======
     ```javascript
     <%
      //content.html内容如下：
@@ -1828,14 +1850,23 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
      ..........
      <% } %>
     ```
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
-    如上一个子页面将使用layout布局页面，layout 页面内容如下
+如上一个子页面将使用layout布局页面，layout 页面内容如下
 
+<<<<<<< HEAD
+```javascript
+@ include("/inc/header.html"){} 
+this is content:${layoutContent}
+this is footer:
+```
+=======
     ```javascript
     <% include("/inc/header.html"){} %>
     this is content:${layoutContent}
     this is footer:
     ```
+>>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
     layoutContent 是默认变量，也可以改成其他名字，具体请参考layout标签函数
 
@@ -1926,7 +1957,7 @@ PlaceholderST.output = new PlaceholderST.Output(){
 
 #### 3.16. 定制模板引擎
 
-Beetl在线体验（[http://ibeetl.com:8080/beetlonline/](http://ibeetl.com:8080/beetlonline/)）面临一个挑战，允许用户输入任何脚本做练习或者分享代码。但又需要防止用户输入恶意的代码，如
+Beetl在线体验（[http://ibeetl.com/beetlonline/](http://ibeetl.com:8080/beetlonline/)）面临一个挑战，允许用户输入任何脚本做练习或者分享代码。但又需要防止用户输入恶意的代码，如
 
 ```javascript
 <%
@@ -2719,7 +2750,7 @@ ${obj.user.name}
 
 比如模板index.html有很多动态内容，有动态生成的菜单，有右侧的top10，也有核心区域的表格，大概内容如下
 
-```javascript
+```
 <#menu/>
 <#top10> ....</#top10>
 <div id="table-container" >
