@@ -194,8 +194,8 @@
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
 	<script>
 		$(function(){
-			if($(window).width() < 1000){
-				
+//			if($(window).width() < 1000){
+			if($(document).width() < 1000){
 				$('.nav-item').on('click',function(e){
 					$(this).toggleClass('item-active')
 				})
