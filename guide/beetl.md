@@ -46,7 +46,7 @@ Beetl目前版本是2.7.3,相对于其他java模板引擎，具有功能齐全�
 >
 >   源码主页：https://github.com/javamonkey/beetl2.0
 >
->   在线体验和代码分享 [http://ibeetl.com/beetlonline/](http://ibeetl.com:8080/beetlonline/)
+>   在线体验和代码分享 [http://ibeetl.com:8080/beetlonline/](http://ibeetl.com:8080/beetlonline/)
 
 
 
@@ -58,9 +58,9 @@ Beetl目前版本是2.7.3,相对于其他java模板引擎，具有功能齐全�
 
 ```xml
 <dependency>
-	<groupId>com.ibeetl</groupId>
-	<artifactId>beetl</artifactId>
-	<version>2.7.3</version>
+        <groupId>com.ibeetl</groupId>
+        <artifactId>beetl</artifactId>
+        <version>2.7.3</version>
 </dependency>
 ```
 
@@ -108,7 +108,7 @@ ENGINE=org.beetl.core.engine.FastRuntimeEngine
 DELIMITER_PLACEHOLDER_START=${
 DELIMITER_PLACEHOLDER_END=}
 DELIMITER_STATEMENT_START=<%
-DELIMITER_STATEMENT_END= %>
+DELIMITER_STATEMENT_END=%>
 DIRECT_BYTE_OUTPUT = FALSE
 HTML_TAG_SUPPORT = true
 HTML_TAG_FLAG = #
@@ -986,24 +986,12 @@ Beetl 也支持HTML tag形式的标签， 区分beetl的html tag 与 标准html 
 
 如对于标签footer,Beetl默认会寻找WebRoot/htmltag/footer.tag(可以通过配置文件修改路径和后缀) ,内容如下:
 
-<<<<<<< HEAD
-
-```html
-
-@if(style==’simple’){
- 请联系我 ${session.user.name}
-@}else{
-请联系我 ${session.user.name},phone:${session.user.phone}
-@}
-
-=======
 ```javascript
 <% if(style==’simple’){ %>
  请联系我 ${session.user.name}
 <% }else{ %>
 请联系我 ${session.user.name},phone:${session.user.phone}
 <% } %>
->>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 ```
 
 如下还包含了自定义html标签一些一些规则
@@ -1067,7 +1055,7 @@ public class TagSample extends GeneralVarTagBinding{
 
 ```xml
 <#tag limit="3";value>
-	${value}
+        ${value}
 </#tag>
 ```
 
@@ -1079,7 +1067,7 @@ public class TagSample extends GeneralVarTagBinding{
 
 ```xml
 <#tag limit="3" var="value">
-	${value}
+        ${value}
 </#tag>
 ```
 
@@ -1346,9 +1334,9 @@ call方法有俩个参数，第一个是数组，这是由模板传入的，对�
 
 ```java
 public class util{
-	public String print(Object a, Context ctx){
-		//balabala...
-	}
+        public String print(Object a, Context ctx){
+                //balabala...
+        }
 }
 ```
 
@@ -1832,16 +1820,6 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
 
 -   采用layout include
 
-<<<<<<< HEAD
-```javascript
-
-@ //content.html内容如下：
-@ layout("/inc/layout.html"){
- this is 正文
- ..........
-@}
-```
-=======
     ```javascript
     <%
      //content.html内容如下：
@@ -1850,23 +1828,14 @@ public class DefaultNativeSecurityManager implements NativeSecurityManager{
      ..........
      <% } %>
     ```
->>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
-如上一个子页面将使用layout布局页面，layout 页面内容如下
+    如上一个子页面将使用layout布局页面，layout 页面内容如下
 
-<<<<<<< HEAD
-```javascript
-@ include("/inc/header.html"){} 
-this is content:${layoutContent}
-this is footer:
-```
-=======
     ```javascript
     <% include("/inc/header.html"){} %>
     this is content:${layoutContent}
     this is footer:
     ```
->>>>>>> 56cfdcade432bba9d453b48401dc67e1f1b6dbc4
 
     layoutContent 是默认变量，也可以改成其他名字，具体请参考layout标签函数
 
@@ -1957,7 +1926,7 @@ PlaceholderST.output = new PlaceholderST.Output(){
 
 #### 3.16. 定制模板引擎
 
-Beetl在线体验（[http://ibeetl.com/beetlonline/](http://ibeetl.com:8080/beetlonline/)）面临一个挑战，允许用户输入任何脚本做练习或者分享代码。但又需要防止用户输入恶意的代码，如
+Beetl在线体验（[http://ibeetl.com:8080/beetlonline/](http://ibeetl.com:8080/beetlonline/)）面临一个挑战，允许用户输入任何脚本做练习或者分享代码。但又需要防止用户输入恶意的代码，如
 
 ```javascript
 <%
@@ -2192,97 +2161,97 @@ import org.beetl.core.exception.BeetlException;
  *
  */
 public class WebRender{
-	GroupTemplate gt = null;
+        GroupTemplate gt = null;
 
-	public WebRender(GroupTemplate gt){
-		this.gt = gt;
-	}
+        public WebRender(GroupTemplate gt){
+                this.gt = gt;
+        }
 
-	/**
-	 * @param key 模板资源id
-	 * @param request
-	 * @param response
-	 * @param args 其他参数，将会传给modifyTemplate方法
-	 */
-	public void render(String key, HttpServletRequest request, HttpServletResponse response, Object... args){
-		Writer writer = null;
-		OutputStream os = null;
-		try{
-			//response.setContentType(contentType);
-			Template template = gt.getTemplate(key);
-			Enumeration<String> attrs = request.getAttributeNames();
+        /**
+         * @param key 模板资源id
+         * @param request
+         * @param response
+         * @param args 其他参数，将会传给modifyTemplate方法
+         */
+        public void render(String key, HttpServletRequest request, HttpServletResponse response, Object... args){
+                Writer writer = null;
+                OutputStream os = null;
+                try{
+                        //response.setContentType(contentType);
+                        Template template = gt.getTemplate(key);
+                        Enumeration<String> attrs = request.getAttributeNames();
 
-			while (attrs.hasMoreElements()){
-				String attrName = attrs.nextElement();
-				template.binding(attrName, request.getAttribute(attrName));
-			}
-			WebVariable webVariable = new WebVariable();
-			webVariable.setRequest(request);
-			webVariable.setResponse(response);
-			webVariable.setSession(request.getSession());
+                        while (attrs.hasMoreElements()){
+                                String attrName = attrs.nextElement();
+                                template.binding(attrName, request.getAttribute(attrName));
+                        }
+                        WebVariable webVariable = new WebVariable();
+                        webVariable.setRequest(request);
+                        webVariable.setResponse(response);
+                        webVariable.setSession(request.getSession());
 
-			template.binding("session", new SessionWrapper(webVariable.getSession()));
+                        template.binding("session", new SessionWrapper(webVariable.getSession()));
 
-			template.binding("servlet", webVariable);
-			template.binding("request", request);
-			template.binding("ctxPath", request.getContextPath());
+                        template.binding("servlet", webVariable);
+                        template.binding("request", request);
+                        template.binding("ctxPath", request.getContextPath());
 
-			modifyTemplate(template, key, request, response, args);
+                        modifyTemplate(template, key, request, response, args);
 
-			String strWebAppExt = gt.getConf().getWebAppExt();
-			if(strWebAppExt!=null){
-				WebRenderExt renderExt = this.getWebRenderExt(strWebAppExt);
-				renderExt.modify(template, gt, request, response);
-			}
-			if (gt.getConf().isDirectByteOutput()){
-				os = response.getOutputStream();
-				template.renderTo(os);
-			}else{
-				writer = response.getWriter();
-				template.renderTo(writer);
-			}
+                        String strWebAppExt = gt.getConf().getWebAppExt();
+                        if(strWebAppExt!=null){
+                                WebRenderExt renderExt = this.getWebRenderExt(strWebAppExt);
+                                renderExt.modify(template, gt, request, response);
+                        }
+                        if (gt.getConf().isDirectByteOutput()){
+                                os = response.getOutputStream();
+                                template.renderTo(os);
+                        }else{
+                                writer = response.getWriter();
+                                template.renderTo(writer);
+                        }
 
-		} catch (IOException e){
-			handleClientError(e);
-		} catch (BeetlException e){
-			handleBeetlException(e);
-		} finally{
-			try{
-				if (writer != null)
-					writer.flush();
-				if (os != null)
-					os.flush();
-			} catch (IOException e){
-				handleClientError(e);
-			}
-		}
-	}
+                } catch (IOException e){
+                        handleClientError(e);
+                } catch (BeetlException e){
+                        handleBeetlException(e);
+                } finally{
+                        try{
+                                if (writer != null)
+                                        writer.flush();
+                                if (os != null)
+                                        os.flush();
+                        } catch (IOException e){
+                                handleClientError(e);
+                        }
+                }
+        }
 
-	/**
-	 * 可以添加更多的绑定
-	 * @param template 模板
-	 * @param key 模板的资源id
-	 * @param request
-	 * @param response
-	 * @param args  调用render的时候传的参数
-	 */
-	protected void modifyTemplate(Template template, String key, HttpServletRequest request,
-		HttpServletResponse response, Object... args){
-	}
+        /**
+         * 可以添加更多的绑定
+         * @param template 模板
+         * @param key 模板的资源id
+         * @param request
+         * @param response
+         * @param args  调用render的时候传的参数
+         */
+        protected void modifyTemplate(Template template, String key, HttpServletRequest request,
+                HttpServletResponse response, Object... args){
+        }
 
-	/**处理客户端抛出的IO异常
-	 * @param ex
-	 */
-	protected void handleClientError(IOException ex){
-		//do nothing
-	}
+        /**处理客户端抛出的IO异常
+         * @param ex
+         */
+        protected void handleClientError(IOException ex){
+                //do nothing
+        }
 
-	/**处理客户端抛出的IO异常
-	 * @param ex
-	 */
-	protected void handleBeetlException(BeetlException ex){
-		throw ex;
-	}
+        /**处理客户端抛出的IO异常
+         * @param ex
+         */
+        protected void handleBeetlException(BeetlException ex){
+                throw ex;
+        }
 }
 ```
 
@@ -2347,39 +2316,39 @@ spring集成还允许注册被spring容器管理的Function，Tag等，也还允
 
 ```xml
 <bean name="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
-	<property name="configFileResource" value="/WEB-INF/beetl.properties"/>
-	<property name="functions">
-		<map>
-			<entry key="testFunction" value-ref="testFunction"/>
-		</map>
-	</property>
+        <property name="configFileResource" value="/WEB-INF/beetl.properties"/>
+        <property name="functions">
+                <map>
+                        <entry key="testFunction" value-ref="testFunction"/>
+                </map>
+        </property>
 
-	<property name="functionPackages">
-		<map>
-			<entry key="fp" value-ref="testFunctionPackage"/>
-		</map>
-	</property>
+        <property name="functionPackages">
+                <map>
+                        <entry key="fp" value-ref="testFunctionPackage"/>
+                </map>
+        </property>
 
-	<property name="tagFactorys">
-		<map>
-			<entry key="html.output" value-ref="testTagFactory"/>
-			<entry key="html.output2" value-ref="testTagFactory2"/>
-		</map>
-	</property>
+        <property name="tagFactorys">
+                <map>
+                        <entry key="html.output" value-ref="testTagFactory"/>
+                        <entry key="html.output2" value-ref="testTagFactory2"/>
+                </map>
+        </property>
 
 </bean>
 
 <bean name="testTagFactory" class="org.beetl.ext.spring.SpringBeanTagFactory">
-	<property name="name" value="testTag"/>
+        <property name="name" value="testTag"/>
 </bean>
 <bean name="testTagFactory2" class="org.beetl.ext.spring.SpringBeanTagFactory">
-	<property name="name" value="testTag2"/>
+        <property name="name" value="testTag2"/>
 </bean>
 
 
 <bean name="beetlViewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver">
-	<property name="config" ref="beetlConfig"/>
-	<property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="config" ref="beetlConfig"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
 </bean>
 ```
 
@@ -2410,54 +2379,54 @@ public class TestTag extends Tag {
 
 ```xml
 <bean name="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
-	<property name="configFileResource" value="/WEB-INF/beetl.properties"/>
+        <property name="configFileResource" value="/WEB-INF/beetl.properties"/>
 </bean>
 
 
 <bean name="cmsbeetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
-	<property name="configFileResource" value="/WEB-INF/cms-beetl.properties"/>
+        <property name="configFileResource" value="/WEB-INF/cms-beetl.properties"/>
 </bean>
 
 
 <!-- Beetl视图解析器1 -->
 <bean name="beetlViewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver">
-	<!-- 多视图解析器，需要设置viewNames和order -->
-	<property name="viewNames">
-		<list>
-			<value>/template/**</value>
-		</list>
-	</property>
-	<property name="suffix" value=".btl"/>
-	<property name="contentType" value="text/html;charset=UTF-8"/>
-	<property name="order" value="0"/>
-	<!-- 多GroupTemplate，需要指定使用的bean -->
-	<property name="config" ref="beetlConfig"/>
+        <!-- 多视图解析器，需要设置viewNames和order -->
+        <property name="viewNames">
+                <list>
+                        <value>/template/**</value>
+                </list>
+        </property>
+        <property name="suffix" value=".btl"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="order" value="0"/>
+        <!-- 多GroupTemplate，需要指定使用的bean -->
+        <property name="config" ref="beetlConfig"/>
 
 </bean>
 
 <!-- Beetl视图解析器2 -->
 <bean name="cmsBeetlViewResolver" class="org.beetl.ext.spring.BeetlSpringViewResolver">
-	<!-- 多视图解析器，需要设置viewNames和order -->
-	<property name="viewNames">
-		<list>
-			<value>/cmstemplate/**</value>
-		</list>
-	</property>
-	<property name="contentType" value="text/html;charset=UTF-8"/>
-	<property name="order" value="1"/>
-	<!-- 多GroupTemplate，需要指定使用的bean -->
-	<property name="config" ref="cmsbeetlConfig"/>
+        <!-- 多视图解析器，需要设置viewNames和order -->
+        <property name="viewNames">
+                <list>
+                        <value>/cmstemplate/**</value>
+                </list>
+        </property>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="order" value="1"/>
+        <!-- 多GroupTemplate，需要指定使用的bean -->
+        <property name="config" ref="cmsbeetlConfig"/>
 
 </bean>
 
 <!-- JSP视图解析器 -->
 <bean name="JSPViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	<!-- 注意JSP的这个视图解析器order必须在最后 -->
-	<property name="order" value="256"/>
-	<!-- beetl配置不支持前缀，这不同于jsp 和 freemaker -->
-	<property name="prefix" value="/WEB-INF/"/>
-	<property name="suffix" value=".jsp"/>
-	<property name="contentType" value="text/html;charset=UTF-8"/>
+        <!-- 注意JSP的这个视图解析器order必须在最后 -->
+        <property name="order" value="256"/>
+        <!-- beetl配置不支持前缀，这不同于jsp 和 freemaker -->
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
 </bean>
 ```
 
@@ -2490,28 +2459,28 @@ Spring Boot 通过java config来配置 beetl需要的BeetlGroupUtilConfiguration
 @Configuration
 public class BeetlConf {
 
-	@Value("${beetl.templatesPath}") String templatesPath;//模板跟目录 
-	@Bean(initMethod = "init", name = "beetlConfig")
-	public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
-		BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
-		try {
-			ClasspathResourceLoader cploder = new ClasspathResourceLoader(BeetlConf.class.getClassLoader(),templatesPath);
-			beetlGroupUtilConfiguration.setResourceLoader(cploder);
-			return beetlGroupUtilConfiguration;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+        @Value("${beetl.templatesPath}") String templatesPath;//模板跟目录 
+        @Bean(initMethod = "init", name = "beetlConfig")
+        public BeetlGroupUtilConfiguration getBeetlGroupUtilConfiguration() {
+                BeetlGroupUtilConfiguration beetlGroupUtilConfiguration = new BeetlGroupUtilConfiguration();
+                try {
+                        ClasspathResourceLoader cploder = new ClasspathResourceLoader(BeetlConf.class.getClassLoader(),templatesPath);
+                        beetlGroupUtilConfiguration.setResourceLoader(cploder);
+                        return beetlGroupUtilConfiguration;
+                } catch (Exception e) {
+                        throw new RuntimeException(e);
+                }
 
-	}
+        }
 
-	@Bean(name = "beetlViewResolver")
-	public BeetlSpringViewResolver getBeetlSpringViewResolver(@Qualifier("beetlConfig") BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
-		BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
-		beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
-		beetlSpringViewResolver.setOrder(0);
-		beetlSpringViewResolver.setConfig(beetlGroupUtilConfiguration);
-		return beetlSpringViewResolver;
-	}
+        @Bean(name = "beetlViewResolver")
+        public BeetlSpringViewResolver getBeetlSpringViewResolver(@Qualifier("beetlConfig") BeetlGroupUtilConfiguration beetlGroupUtilConfiguration) {
+                BeetlSpringViewResolver beetlSpringViewResolver = new BeetlSpringViewResolver();
+                beetlSpringViewResolver.setContentType("text/html;charset=UTF-8");
+                beetlSpringViewResolver.setOrder(0);
+                beetlSpringViewResolver.setConfig(beetlGroupUtilConfiguration);
+                return beetlSpringViewResolver;
+        }
 
  }
 ```
@@ -2533,21 +2502,21 @@ spring-devtools.properties 为spring boot的配置文件,位于META-INF目录下
 
 ```xml
 <filter>
-	<filter-name>madvoc</filter-name>
-	<filter-class>jodd.madvoc.MadvocServletFilter</filter-class>
-	<init-param>
-			<param-name>madvoc.webapp</param-name>
-			<param-value>test.MyWebApplication</param-value>
-	</init-param>
+        <filter-name>madvoc</filter-name>
+        <filter-class>jodd.madvoc.MadvocServletFilter</filter-class>
+        <init-param>
+                        <param-name>madvoc.webapp</param-name>
+                        <param-value>test.MyWebApplication</param-value>
+        </init-param>
     <init-param>
-		<param-name>madvoc.configurator</param-name>
-		<param-value>test.MyAutomagicMadvocConfigurator</param-value>
-	</init-param>
+                <param-name>madvoc.configurator</param-name>
+                <param-value>test.MyAutomagicMadvocConfigurator</param-value>
+        </init-param>
 
 </filter>
 <filter-mapping>
-	<filter-name>madvoc</filter-name>
-	<url-pattern>/*</url-pattern>
+        <filter-name>madvoc</filter-name>
+        <url-pattern>/*</url-pattern>
 </filter-mapping>
 ```
 
@@ -2555,21 +2524,21 @@ MyWebApplication 和 MyAutomagicMadvocConfigurator 需要自己参照如下例�
 
 ```java
 public class MyAutomagicMadvocConfigurator extends AutomagicMadvocConfigurator {
-	public MyAutomagicMadvocConfigurator(){
-		super();
-		//不扫描beetl 里jar文件里的action和result，否则，会扫描StrutsResultSupport不相干的class
-		this.rulesJars.exclude("**/*beetl*.jar");
-	}
+        public MyAutomagicMadvocConfigurator(){
+                super();
+                //不扫描beetl 里jar文件里的action和result，否则，会扫描StrutsResultSupport不相干的class
+                this.rulesJars.exclude("**/*beetl*.jar");
+        }
 }
 ```
 
 ```java
 public class MyWebApplication  extends WebApplication{
-	@Override
-	protected void init(MadvocConfig madvocConfig, ServletContext servletContext) {
-		//设置默认
-		madvocConfig.setDefaultActionResult(BeetlActionResult.class);
-	}
+        @Override
+        protected void init(MadvocConfig madvocConfig, ServletContext servletContext) {
+                //设置默认
+                madvocConfig.setDefaultActionResult(BeetlActionResult.class);
+        }
  }
 ```
 
@@ -2578,13 +2547,13 @@ public class MyWebApplication  extends WebApplication{
 ```java
 @MadvocAction
 public class IndexAction {
-	@Out
-	String value;
-	@Action("/index.html")
-	public String world() {
-		value = "Hello World!";
-		return "/ok.html";
-	}
+        @Out
+        String value;
+        @Action("/index.html")
+        public String world() {
+                value = "Hello World!";
+                return "/ok.html";
+        }
 }
 ```
 
@@ -2611,13 +2580,13 @@ public class DemoConfig extends JFinalConfig{
 
 ```java
 public void modify(){
-	int artId = getParaToInt(0, -1);
-	setAttr("title", "修改文章");
-	List<Cate> cateLists = Cate.getAllCate();
-	//模板里访问cateLists,atr,
-	setAttr("cateLists", cateLists);
-	setAttr("art", Article.dao.findById(artId));
-	render("/modify.html");
+        int artId = getParaToInt(0, -1);
+        setAttr("title", "修改文章");
+        List<Cate> cateLists = Cate.getAllCate();
+        //模板里访问cateLists,atr,
+        setAttr("cateLists", cateLists);
+        setAttr("art", Article.dao.findById(artId));
+        render("/modify.html");
 }
 ```
 
@@ -2639,13 +2608,13 @@ Nutz集成提供了 BeetlViewMaker ，实现了 ViewMaker方法，如下代码
 @At("/ctx")
 @Ok("beetl:ctx.btl")
 public Context withContext() {
-	Context ctx = Lang.context();
-	Pager pager = dao.createPager(1, 20);
-	pager.setRecordCount(dao.count(UserProfile.class));
-	List<UserProfile> list = dao.query(UserProfile.class, null, pager);
-	ctx.set("pager", pager);
-	ctx.set("list", list);
-	return ctx;
+        Context ctx = Lang.context();
+        Pager pager = dao.createPager(1, 20);
+        pager.setRecordCount(dao.count(UserProfile.class));
+        List<UserProfile> list = dao.query(UserProfile.class, null, pager);
+        ctx.set("pager", pager);
+        ctx.set("list", list);
+        return ctx;
 }
 ```
 
@@ -2688,17 +2657,17 @@ ${obj.user.name}
 <package name="default" namespace="/" extends="struts-default">
 <!--  ....   -->
 <result-types>
-	<result-type name="beetl"
-		class="org.beetl.ext.struts2.Struts2BeetlActionResult" default="true" >
-		<param name="contentType">text/html; charset=UTF-8</param>
-	</result-type>
+        <result-type name="beetl"
+                class="org.beetl.ext.struts2.Struts2BeetlActionResult" default="true" >
+                <param name="contentType">text/html; charset=UTF-8</param>
+        </result-type>
 </result-types>
 
 <action name="HelloWorld" class="com.beetl.struts.HelloWorld">
-	<result>/hello.html</result>
+        <result>/hello.html</result>
 </action>
 <action name="Ajax" class="com.beetl.struts.AjaxHtml">
-	<result>/table.html#table</result>
+        <result>/table.html#table</result>
 </action>
 <!--  ....   -->
 </package>
@@ -2750,7 +2719,7 @@ ${obj.user.name}
 
 比如模板index.html有很多动态内容，有动态生成的菜单，有右侧的top10，也有核心区域的表格，大概内容如下
 
-```
+```javascript
 <#menu/>
 <#top10> ....</#top10>
 <div id="table-container" >
@@ -2921,21 +2890,21 @@ Spring函数并没有内置，需要注册，如下
 
 ```xml
 <bean name="beetlGroupUtilConfiguration" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
-	<property name="functions">
-		<map>
-			<!-- 定义SpEL方法 -->
-			<entry key="spel">
-				<bean class="org.beetl.ext.spring.SpELFunction"/>
-			</entry>
-		</map>
-		</property>
-		 <property name="functionPackages">
-		<map>
-			<entry key="sputil">
-				<bean class="org.beetl.ext.spring.UtilsFunctionPackage"/>
-			</entry>
-		</map>
-	</property>
+        <property name="functions">
+                <map>
+                        <!-- 定义SpEL方法 -->
+                        <entry key="spel">
+                                <bean class="org.beetl.ext.spring.SpELFunction"/>
+                        </entry>
+                </map>
+                </property>
+                 <property name="functionPackages">
+                <map>
+                        <entry key="sputil">
+                                <bean class="org.beetl.ext.spring.UtilsFunctionPackage"/>
+                        </entry>
+                </map>
+        </property>
 </bean>
 ```
 
